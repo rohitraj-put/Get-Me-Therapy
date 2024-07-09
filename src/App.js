@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Tracking from './components/Tracking';
+import BoardingOne from './components/Boarding/BoardingOne';
+import './App.css'
+import BoardingTwo from './components/Boarding/BoardingTwo';
+import BoardingThree from './components/Boarding/BoardingThree';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/tracking" element={<Tracking />} />
+        <Route path="/boarding" element={<BoardingOne />} />
+        <Route path='/boarding-two' element={<BoardingTwo />} />
+        <Route path='/boarding-three' element={<BoardingThree />} />
+      </Routes>
+    </Router>
   );
 }
 

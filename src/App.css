@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.boardingOne {
+    background-image: url(/src/Image/getImage1.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    border: 1px solid transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.boardingTwo {
+    background-image: url(/src/Image/getImage2.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    border: 1px solid transparent;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.boardingThree {
+    background-image: url(/src/Image/getImage3.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    border: 1px solid transparent;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes slide-out-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page-exit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: slide-out-left 0.5s forwards;
+}
+
+.tracking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    background: #282c34;
+    color: white;
+    height: 100vh;
+    justify-content: center;
+}
+
+.tracking-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.time-display {
+    font-size: 4rem;
+    font-weight: bold;
+    background: black;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.speed-slider {
+    width: 80%;
+    margin: 1rem 0;
+}
+
+.share-button {
+    background-color: #FE8C00;
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.share-button:hover {
+    background-color: #FE8C00;
 }

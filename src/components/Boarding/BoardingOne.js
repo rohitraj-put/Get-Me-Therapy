@@ -1,16 +1,16 @@
-// BoardingOne.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GrLinkNext } from "react-icons/gr";
 
+
 function BoardingOne() {
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [exiting, setExiting] = useState(false);
 
     const handleNextClick = () => {
         setExiting(true);
         setTimeout(() => {
-            history('/boarding-two');
+            navigate('/boarding-two');
         }, 500);
     };
 

@@ -28,14 +28,24 @@
     border: 1px solid transparent;
 }
 
-@keyframes slide-out-left {
-    from {
+
+
+.page-exit {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes swipeLeft {
+    0% {
         transform: translateX(0);
     }
 
-    to {
+    100% {
         transform: translateX(-100%);
     }
+}
+
+.page-exit {
+    animation: swipeLeft 0.5s forwards;
 }
 
 .page-exit {
@@ -78,7 +88,7 @@
 
 .share-button {
     background-color: #FE8C00;
-    color: black;
+    color: white;
     border: none;
     padding: 1rem 2rem;
     border-radius: 5px;

@@ -38,8 +38,12 @@ const Tracking = () => {
 
   return (
     <>
+
       <div className="tracking-container">
-        <h2 className="tracking-title">Digital Watch</h2>
+        <div className='flex gap-4'>
+          <img className='w-12 h-12' src='https://getmetherapy.com/pricing/images/logo.webp' />
+          <h2 className="tracking-title text-[#FE8C00] uppercase">Get Me Therapy</h2>
+        </div>
         <div className="time-display">
           {time.toLocaleTimeString()}
         </div>

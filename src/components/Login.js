@@ -13,26 +13,26 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success('Login Successful')
-      navigate('/tracking');
+      toast.success('Login Successful');
+      navigate('/postlogin');
     } catch (error) {
       console.error("Error logging in: ", error);
+      toast.error(`Your password is wrong`);
     }
   };
-
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      toast.success('Login Successful')
-      navigate('/tracking');
+      toast.success('Login Successful');
+      navigate('/postlogin');
     } catch (error) {
       console.error("Error logging in with Google: ", error);
+      toast.error(`Error logging in with Google: ${error.message}`);
     }
   };
 
   return (
     <>
-
       <div className="flex justify-center items-center min-h-screen bg-gray-800">
         <div className="w-[375px] max-w-md bg-white p-8 shadow-lg">
           <div className="mb-6">

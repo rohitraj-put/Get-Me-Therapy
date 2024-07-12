@@ -1,8 +1,8 @@
-// src/components/Signup.js
 import React, { useState } from 'react';
 import { auth, provider } from '../firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -16,23 +16,22 @@ const Signup = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       await updateProfile(user, { displayName: fullName });
-
-      console.log("User signed up successfully");
-      navigate('/tracking');
+      toast.success("User signed up successfully");
+      navigate('/login');
     } catch (error) {
       console.error("Error signing up: ", error.code, error.message);
       switch (error.code) {
         case 'auth/weak-password':
-          alert('The password is too weak.');
+          toast.error('The password is too weak.');
           break;
         case 'auth/email-already-in-use':
-          alert('The email address is already in use by another account.');
+          toast.error('The email address is already in use by another account.');
           break;
         case 'auth/invalid-email':
-          alert('The email address is not valid.');
+          toast.error('The email address is not valid.');
           break;
         default:
-          alert(`Error signing up: ${error.message}`);
+          toast.error(`Error signing up: ${error.message}`);
       }
     }
   };
@@ -40,9 +39,10 @@ const Signup = () => {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      navigate('/tracking');
+      navigate('/login');
     } catch (error) {
       console.error("Error logging in with Google: ", error);
+      toast.error(`Error logging in with Google: ${error.message}`);
     }
   };
 
@@ -90,6 +90,7 @@ const Signup = () => {
           <div className='flex justify-start'>
             <input
               type='checkbox'
+              required
             />
             <p className='pl-1 text-[14px]'>I Agree with <span className='text-[#FE8C00]'>Terms of Service</span> and <span className='text-[#FE8C00]'>Privacy Policy</span> </p>
           </div>
@@ -108,7 +109,7 @@ const Signup = () => {
         </div>
         <div
           onClick={handleGoogleLogin}
-          className="mt-4  py-2 bg-white text-[#FE8C00] border font-semibold rounded-[100px] transition-colors flex items-center justify-center cursor-pointer"
+          className="mt-4 py-2 bg-white text-[#FE8C00] border font-semibold rounded-[100px] transition-colors flex items-center justify-center cursor-pointer"
         >
           <svg className="w-5 h-5 mr-2" viewBox="0 0 48 48">
             <path fill="#4285F4" d="M24 9.5c3.14 0 5.58 1.06 7.67 2.78l5.65-5.65C33.58 3.92 29.07 2 24 2 14.89 2 7.28 7.48 4.1 15.07l6.75 5.24C12.77 14.45 18.02 9.5 24 9.5z" />
@@ -119,6 +120,7 @@ const Signup = () => {
         </div>
         <p className='text-center text-[14px] mt-8'>Have an account?  <Link to={'/login'} className='text-[#FE8C00]'> Sign In</Link></p>
       </div>
+      <Toaster />
     </div>
   );
 };

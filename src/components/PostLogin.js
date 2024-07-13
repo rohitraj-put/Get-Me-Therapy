@@ -1,16 +1,16 @@
 import React from 'react'
 import successImage from '../Image/success.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signOut } from "firebase/auth";
 
 function PostLogin() {
+    const navigate = useNavigate()
     const handleLogout = () => {
         const auth = getAuth();
         signOut(auth)
             .then(() => {
                 console.log('User signed out.');
-                // Optionally, redirect to the login page or update the UI accordingly
-                window.location.href = "/login"; // or use react-router-dom to navigate
+                navigate("/login")
             })
             .catch((error) => {
                 console.error('Error signing out: ', error);
